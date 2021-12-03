@@ -1,3 +1,13 @@
-select lb.account_id, lb.region, lb.name, ls.listener_protocol from aws_elbv1_load_balancers lb
-join aws_elbv1_load_balancer_listeners ls on ls.load_balancer_cq_id=lb.cq_id
-where ls.listener_protocol not in ('HTTPS', 'SSL');
+select
+
+    aws_elbv1_load_balancers.account_id,
+    aws_elbv1_load_balancers.region,
+    aws_elbv1_load_balancers.name,
+    aws_elbv1_load_balancer_listeners.listener_protocol
+
+from aws_elbv1_load_balancers
+inner join
+    aws_elbv1_load_balancer_listeners on
+        aws_elbv1_load_balancer_listeners.load_balancer_cq_id = aws_elbv1_load_balancers.cq_id
+where
+    aws_elbv1_load_balancer_listeners.listener_protocol not in ('HTTPS', 'SSL');

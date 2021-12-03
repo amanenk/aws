@@ -1,7 +1,10 @@
-SELECT i.arn, c.title
+SELECT
+    aws_ssm_instances.arn,
+    aws_ssm_instance_compliance_items.title
 FROM
-  aws_ssm_instances i JOIN aws_ssm_instance_compliance_items c
-  ON i.cq_id = c.instance_cq_id
+    aws_ssm_instances INNER JOIN aws_ssm_instance_compliance_items
+    ON
+        aws_ssm_instances.cq_id = aws_ssm_instance_compliance_items.instance_cq_id
 WHERE
-  c.compliance_type = 'Patch'
-  AND c.status IS DISTINCT FROM 'COMPLIANT'
+    aws_ssm_instance_compliance_items.compliance_type = 'Patch'
+    AND aws_ssm_instance_compliance_items.status IS DISTINCT FROM 'COMPLIANT'

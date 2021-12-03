@@ -1,15 +1,13 @@
-select
-    aws_s3_buckets.arn
+select aws_s3_buckets.arn
 from
     aws_s3_buckets
 where
     aws_s3_buckets.cq_id not in (
-        select
-            bucket_cq_id
+        select bucket_cq_id
         from
-            aws_s3_bucket_replication_rules 
+            aws_s3_bucket_replication_rules
         where
-            aws_s3_bucket_replication_rules.status is NULL
+            aws_s3_bucket_replication_rules.status is null
             or aws_s3_bucket_replication_rules.status != 'Enabled'
     );
 

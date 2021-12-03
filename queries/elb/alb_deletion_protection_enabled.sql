@@ -1,3 +1,10 @@
-select lb.account_id, lb.region, lb.name from aws_elbv2_load_balancers lb
-join aws_elbv2_load_balancer_attributes a on a.load_balancer_cq_id=lb.cq_id
-where lb.type='application' and a.deletion_protection is not true;
+select
+    aws_elbv2_load_balancers.account_id,
+    aws_elbv2_load_balancers.region,
+    aws_elbv2_load_balancers.name
+from aws_elbv2_load_balancers
+inner join
+    aws_elbv2_load_balancer_attributes on
+        aws_elbv2_load_balancer_attributes.load_balancer_cq_id = aws_elbv2_load_balancers.cq_id
+where
+    aws_elbv2_load_balancers.type = 'application' and aws_elbv2_load_balancer_attributes.deletion_protection is not true;
