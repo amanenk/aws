@@ -60,32 +60,32 @@ policy "foundational_security" {
         description = "cloudfront controls"
         query "1" {
             description = "CloudFront distributions should have a default root object configured"
-            query = "select 1;"
+            query = file("queries/cloudfront/default_root_object_configured.sql")
         }
 
         query "2" {
             description = "CloudFront distributions should have origin access identity enabled"
-            query = "select 1;"
+            query = file("queries/cloudfront/origin_access_identity_enabled.sql")
         }
 
         query "3" {
             description = "CloudFront distributions should require encryption in transit"
-            query = "select 1;"
+            query = file("queries/cloudfront/viewer_policy_https.sql")
         }
 
         query "4" {
             description = "CloudFront distributions should have origin failover configured"
-            query = "select 1;"
+            query = file("queries/cloudfront/origin_failover_enabled.sql")
         }
 
         query "5" {
             description = "CloudFront distributions should have logging enabled"
-            query = "select 1;"
+            query = file("queries/cloudfront/accesslogs_enabled.sql")
         }
 
         query "6" {
             description = "CloudFront distributions should have AWS WAF enabled"
-            query = "select 1;"
+            query = file("queries/cloudfront/associated_with_waf.sql")
         }
     }
 
@@ -263,12 +263,12 @@ policy "foundational_security" {
         description = "ElasticBeanstalk controls"
         query "1" {
             description = "Elastic Beanstalk environments should have enhanced health reporting enabled"
-            query = "select 1;"
+            query = file("queries/elasticbeanstalk/advanced_health_reporting_enabled.sql")
         }
 
         query "2" {
             description = "Elastic Beanstalk managed platform updates should be enabled"
-            query = "select 1;"
+            query = file("queries/elasticbeanstalk/elastic_beanstalk_managed_updates_enabled.sql")
         }
     }
 
@@ -429,17 +429,17 @@ policy "foundational_security" {
         description = "KMS controls"
         query "1" {
             description = "IAM customer managed policies should not allow decryption and re-encryption actions on all KMS keys"
-            query = "select 1;"
+            query = file("queries/kms/customer_policy_blocked_kms_actions.sql")
         }
 
         query "2" {
             description = "IAM principals should not have IAM inline policies that allow decryption and re-encryption actions on all KMS keys"
-            query = "select 1;"
+            query = file("queries/kms/inline_policy_blocked_kms_actions.sql")
         }
 
         query "3" {
             description = "AWS KMS keys should not be unintentionally deleted"
-            query = "select 1;"
+            query = file("queries/kms/cmk_not_scheduled_for_deletion.sql")
         }
     }
 

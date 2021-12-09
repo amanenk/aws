@@ -18,12 +18,15 @@ Official AWS security &amp; compliance policy pack for CloudQuery.
 ### Running
 
 ```bash
+# Describe what is available in the policy pack
+cloudquery policy describe aws
+
 # Run the whole pack
 cloudquery policy run aws
 
 # Run specific policy
-cloudquery policy run aws --sub-path cis_v1.2.0
+cloudquery policy run aws aws/cis_v1.2.0
 
 # Run specific check
-cloudquery policy run aws --sub-path cis_v1.2.0/1/1
+cloudquery policy run aws aws/cis_v1.2.0/1/1
 ```
